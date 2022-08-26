@@ -1,16 +1,16 @@
-# Solariot
+# SolVic - a fork of Solariot
 
 Leverage your IoT enabled Solar PV Inverter to stream your solar energy usage
 data to a real time dashboard.
 
-Solariot will connect directly to your Inverter using Modbus TCP. 
+SolVic will connect directly to your Inverter using Modbus TCP. 
 
-Currently, Solariot is able to talk to a SMA Sunny Boy and Sungrow SH5K & SG5KD inverters. 
-Solariot is designed to allow any Modbus TCP enabled inverter to be queried using a Modbus register map.
+Currently, SolVic is able to talk to a SMA Sunny Boy and Sungrow SH5K & SG5KD inverters. 
+SolVic is designed to allow any Modbus TCP enabled inverter to be queried using a Modbus register map.
 
 Data is collected and can be streamed to destinations like dweet.io, MQTT, InfluxDB or PVOutput. 
-To visualise the telemetry, use a dashboard such as Grafana. For example, this is Meltaxa's Grafana dashboard on 
-<a href="https://solariot.live">solariot.live</a>:
+To visualise the telemetry, use a dashboard such as Grafana. For example, this is my Grafana dashboard on 
+<a href="https://solvic.live">solvic.live</a>:
 <p align="center">
   <!--- 
   Github will by default use it's Camo CDN to cache images (https://github.blog/2014-01-28-proxying-user-images/). 
@@ -45,18 +45,18 @@ customise your own modbus register file.
    
 3. Update the config.py with your values, such as the Inverter's IP address, 
 port, inverter model (which corresponds to the modbus register file) and the
-register addresses Solariot should scan from. Enable optional support for MQTT,
+register addresses SolVic should scan from. Enable optional support for MQTT,
 PVOutput, InfluxDB and more.
 
 4. Run the solariot.py script. 
     ```
-    ./solariot.py
+    ./solvic.py
     ```
    * Command line options:
     ```
     -c             Python module to load as our config. Default is config.py.
     -v             Level of verbosity 0=ERROR 1=INFO 2=DEBUG.
-    --one-shot     Run Solariot just once then exit.
+    --one-shot     Run SolVic just once then exit.
     ```
 ## Docker
 
@@ -65,7 +65,7 @@ PVOutput, InfluxDB and more.
 2. Create a config.py (see config-example.py) and place it in the config directory.
 
 3. Run the Docker image with the volume switch to mount your config directory as /config in the image
-   * `docker run -v <localpath>:/config meltaxa/solariot`
+   * `docker run -v <localpath>:/config revil-O/solvic`
 
 Note that the container runs as UID/GID 2000, so mounted config files will need to be readable. E.G.
 
@@ -80,7 +80,7 @@ Now that you are collecting the inverter's data, you'll want to ultimately
 display it in a dashboard as seen above. 
 
 There are many methods to stream the data. Here are a few options, which
-can be enabled in Solariot. 
+can be enabled in SolVic. 
 
 ### Dweet.io and Freeboard
 
@@ -125,13 +125,13 @@ The file will require editing to match your InfluxDb settings.
 you can configure [Prometheus](https://prometheus.io/) to scrape this by adding a rule like this to your prometheus.yml
 ```
 scrape_configs:
-  - job_name: 'solariot'
+  - job_name: 'solvic'
     scrape_interval: 30s
     static_configs:
       - targets: ['localhost:8000']
 ```
 
-alternatively if your using [Kubernetes](https://kubernetes.io/) you can use this [helm chart](https://github.com/slackerlinux85/HelmCharts/tree/master/helm-chart-sources/solariot)
+alternatively if your using [Kubernetes](https://kubernetes.io/) you can use this [helm chart](https://github.com/slackerlinux85/HelmCharts/tree/master/helm-chart-sources/solvic)
 
 ### PVOutput.org
 
@@ -165,7 +165,7 @@ Don't forget to append the "&png" string to your URL.
 ## Contributions
 
 If you have created a modbus register map for an inverter, please submit your
-file as a pull request for Solariot inclusion.
+file as a pull request for SolVic inclusion.
 
 ## Acknowledgements
 
