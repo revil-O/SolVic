@@ -34,8 +34,8 @@ customise your own modbus register file.
 
 1. Download or clone this repository to your local workstation.
     ```
-    git clone https://github.com/meltaxa/solariot.git
-    cd solariot
+    git clone https://github.com/revil-O/solvic.git
+    cd solvic
     ```
    
 2. Install the required libraries.
@@ -48,7 +48,7 @@ port, inverter model (which corresponds to the modbus register file) and the
 register addresses SolVic should scan from. Enable optional support for MQTT,
 PVOutput, InfluxDB and more.
 
-4. Run the solariot.py script. 
+4. Run the solvic.py script. 
     ```
     ./solvic.py
     ```
